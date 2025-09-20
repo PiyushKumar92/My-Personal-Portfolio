@@ -877,6 +877,8 @@ h2::after {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     color: white;
+    resize: vertical;
+    font-family: inherit;
 }
 
 .form-group input::placeholder,
@@ -891,6 +893,11 @@ h2::after {
     box-shadow: 0 0 20px rgba(116, 185, 255, 0.3);
     transform: translateY(-2px);
     background: rgba(255, 255, 255, 0.2);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    max-height: 200px;
 }
 
 .form-btn {
