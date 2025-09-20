@@ -833,6 +833,8 @@ h2::after {
 .contact-item a {
     color: #74b9ff;
     text-decoration: none;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .contact-item a:hover {
@@ -1119,5 +1121,21 @@ h2::after {
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+        text-align: left;
+    }
+    
+    .contact-item strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    
+    .contact-item a {
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
 }
