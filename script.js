@@ -1,26 +1,20 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+// Loading Screen
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.classList.add('hidden');
         }
-    });
+    }, 1000);
 });
 
-// Navbar background change on scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-    }
-});
+// Mobile Menu Toggle
+let mobileToggle, navMenu;
+
+// Smooth scrolling for navigation links - will be initialized in DOMContentLoaded
+
+// Navbar background change on scroll - will be initialized in DOMContentLoaded
+let navbar;
 
 // Animate elements on scroll
 const observerOptions = {
@@ -37,28 +31,83 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observe all sections for animation
+// Scroll Animations
+const observerOptions2 = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer2 = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions2);
+
+// Add animation classes and observe elements
 document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+    // Initialize navbar
+    navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    }
+
+    // Initialize smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
+
+    // Initialize mobile menu elements
+    mobileToggle = document.getElementById('mobileToggle');
+    navMenu = document.getElementById('navMenu');
+
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    const animateElements = document.querySelectorAll('.edu-item, .skill-category, .project-card, .contact-item');
     
-    // Animate skill tags
-    const skillTags = document.querySelectorAll('.skill-tag');
-    skillTags.forEach((tag, index) => {
-        tag.style.animationDelay = `${index * 0.1}s`;
-        tag.classList.add('fade-in');
+    animateElements.forEach((el, index) => {
+        if (index % 2 === 0) {
+            el.classList.add('slide-in-left');
+        } else {
+            el.classList.add('slide-in-right');
+        }
+        observer2.observe(el);
     });
-    
-    // Animate project cards
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.2}s`;
-        card.classList.add('slide-up');
+
+    // Add fade-in to other elements
+    const fadeElements = document.querySelectorAll('h2, .about-text p, .contact-content p');
+    fadeElements.forEach(el => {
+        el.classList.add('fade-in');
+        observer2.observe(el);
     });
 });
 
