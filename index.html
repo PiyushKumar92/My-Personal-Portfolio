@@ -201,138 +201,15 @@
                     <form action="https://formspree.io/f/xjkevwzl" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Your Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="email" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message:</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-                        </div>
-                        <button type="submit" class="form-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Piyush Kumar. All rights reserved.</p>
-                <p>Built with passion and dedication</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/piyush-kumar-a94b49286" target="_blank" title="LinkedIn">in</a>
-                    <a href="https://github.com/PiyushKumar92" target="_blank" title="GitHub">gh</a>
-                    <a href="mailto:Piyushkumar8935@gmail.com" title="Email">@</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Action Button -->
-    <a href="#home" class="fab" title="Back to Top">↑</a>
-
-    <script>
-        // Loading Screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 1000);
-        });
-
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        mobileToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Add animation classes and observe elements
-        document.addEventListener('DOMContentLoaded', function() {
-            const animateElements = document.querySelectorAll('.edu-item, .skill-category, .project-card, .contact-item');
-            
-            animateElements.forEach((el, index) => {
-                if (index % 2 === 0) {
-                    el.classList.add('slide-in-left');
-                } else {
-                    el.classList.add('slide-in-right');
-                }
-                observer.observe(el);
-            });
-
-            // Add fade-in to other elements
-            const fadeElements = document.querySelectorAll('h2, .about-text p, .contact-content p');
-            fadeElements.forEach(el => {
-                el.classList.add('fade-in');
-                observer.observe(el);
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.15)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
-    </script>
-</body>
-</html>      <label for="name">Your Name:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message:</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Enter your message" autocomplete="off" required></textarea>
                         </div>
                         <button type="submit" class="form-btn">Send Message</button>
                     </form>
